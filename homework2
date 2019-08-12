@@ -1,0 +1,329 @@
+
+# coding: utf-8
+
+# In[1]:
+
+
+#第一题
+#写一个矩形，并计算面积和周长
+class Rectangle(object):
+    
+    def __init__(self,width,height):
+        self.width = width
+        self.height = height
+        width = 1
+        height = 2
+        print("宽1：",self.width)
+        print("长1：",self.height)
+    def getArea(self):
+        print("面积1：",self.width*self.height)
+    def getPerimeter(self):
+        print("周长1：",self.width*2 + self.height*2)       
+
+
+class Rectangle2(object):
+    
+    def __init__(self,width,height):
+        self.width = width
+        self.height = height
+       
+        print("宽2：",self.width)
+        print("长2：",self.height)
+    def getArea(self):
+        print("面积2：",self.width*self.height)
+    def getPerimeter(self):
+        print("周长2：",self.width*2 + self.height*2)  
+        
+re = Rectangle(4,40)
+re.getArea()
+re.getPerimeter()       
+
+        
+re2 = Rectangle2(3.5,35.7)
+re2.getArea()
+re2.getPerimeter()
+
+
+# In[2]:
+
+
+#第二题
+#银行账户，id，利率，利息，余额
+class Account(object):
+    def __init__(self,id,balance,annuallnterestRate):
+        self.__id = id
+        self.__balance = balance
+        self.__annuallnterestRate = annuallnterestRate
+       
+    @property  #访问器
+    def id(self):  
+        print(self.__id)
+    @id.setter  #修改器
+    def id(self,xgid):
+        self.__id = xgid 
+        
+    @property  #访问器
+    def balance(self):  
+        print(self.__balance)
+    @balance.setter  #修改器
+    def balance(self,xgbalance):
+        self.__balance = xgbalance 
+        
+    @property  #访问器
+    def annuallnterestRate(self):  
+        print(self.__annuallnterestRate)
+    @annuallnterestRate.setter  #修改器
+    def annuallnterestRate(self,xgannuallnterestRate):
+        self.__annuallnterestRate = xgannuallnterestRate 
+        
+        
+        
+    def getMonthlylnterestRate(self):
+        self.monthlylnterestRate = self.__annuallnterestRate/12
+        print("id账号：",self.__id)
+        print("月利率：",self.monthlylnterestRate)
+        
+    def getMonthlylnterest(self):
+        print("月利息：",self.__balance*self.monthlylnterestRate)
+        
+    def withdraw(self,atm):
+        self.__balance = self.__balance - atm
+       
+    def deposit(self,atm):
+        self.__balance = self.__balance + atm
+        print("余额：",self.__balance)
+        
+
+        
+acc = Account(1122,10000,0.045)
+acc.id = 554
+acc.balance = 3.2
+acc.annuallnterestRate = 0.4
+acc.getMonthlylnterestRate()
+acc.getMonthlylnterest()
+acc.withdraw(2500)
+acc.deposit(3000)
+
+
+# In[7]:
+
+
+#第三题
+#（Fan类）设计一个名为Fan的类表示一个风扇。
+class Fan(object):
+    def __init__(self):
+        self.speed=1
+        self.on=False
+        self.radius=5.0
+        self.color="blue"
+    def fengshan(self,speed,on,radius,color):
+        self.speed=speed
+        self.color=color
+        self.radius=radius
+        self.on=on
+        
+    def xianshi(self):
+        if self.speed==1:
+            speed1="SLOW"
+        elif self.speed==2:
+            speed1="MEDIUM"
+        else:
+            speed1="FAST"
+        print(speed1,self.on,self.radius,self.color)
+yy = Fan()
+yy.fengshan(3,10.0,True,"yellow")
+yy.xianshi()
+yy.fengshan(2,5.0,False,"blue")
+yy.xianshi()
+
+
+# In[3]:
+
+
+#第四题
+#写一个多边形，计算周长和面积
+import math
+class RegularPolygon(object):
+    
+    def __init__(self,n,side,x,y):
+        self.__n = n
+        self.__side =side
+        self.__x = x
+        self.__y = y
+        x=0
+        y=0
+    @property  #访问器
+    def n(self):  
+        print(self.__n)
+    @n.setter  #修改器
+    def n(self,xgn):
+        self.__n = xgn 
+        
+    @property  #访问器
+    def side(self):  
+        print(self.__side)
+    @side.setter  #修改器
+    def side(self,xgside):
+        self.__side = xgside 
+        
+    @property  #访问器
+    def x(self):  
+        print(self.__x)
+    @x.setter  #修改器
+    def x(self,xgx):
+        self.__x = xgx 
+        
+    @property  #访问器
+    def y(self):  
+        print(self.__y)
+    @y.setter  #修改器
+    def y(self,xgy):
+        self.__y = xgy 
+        
+    
+    def getPerimeter(self):
+        print("正多边型周长：",self.__n*self.__side)
+    def getArea(self):
+        print("正多边型面积：",self.__n*self.__side**2/4*math.tan(math.pi/self.__n))
+        
+re=RegularPolygon(10,4,5.6,7.8)
+re.n = 6
+re.side = 9
+re.x = 1
+re.y = 1
+re.getPerimeter()
+re.getArea()
+
+
+# In[11]:
+
+
+#第五题
+#（代数：2*2线性方程式）设计一个名为LinearEquation的类，它是2*2的线性方程式：
+class LinearEquation(object):
+    def __init__(self,a,b,c,d,e,f):
+        self.__a = a
+        self.__b = b
+        self.__c = c
+        self.__d = d
+        self.__e = e
+        self.__f = f
+        self.x=0
+        self.y=0
+        self.z=0
+    def isSolvable(self):
+        z=self.__a*self.__d - self.__b * self.__c
+        if z !=0:
+            self.z=True
+        else:
+            self.z=False
+    def get(self):
+        self.x=(self.__e * self.__d - self.__b * self.__f) / (self.__a * self.__d - self.__b * self.__c)
+        self.y=(self.__a * self.__f - self.__e * self.__c) / (self.__a * self.__d - self.__b * self.__c)
+    def getX(self):
+        self.isSolvable()
+        if self.z == True:
+            self.get()
+            print(self.x)
+        else:
+            pass
+    def getY(self):
+        self.isSolvable()
+        if self.z == True:
+            self.get()
+            print(self.y)
+        else:
+            pass
+yy=LinearEquation(1,2,3,4,5,6)
+yy.getX()
+yy.getY()
+    
+
+
+# In[13]:
+
+
+#第六题
+#编写程序提示用户输入这四个端点，然后显示它们的交点
+import numpy as np
+def get_crossing(s1,s2):
+    xa,ya = s1[0][0],s1[0][1]
+    xb,yb = s1[1][0],s1[1][1]
+    xc,yc = s2[0][0],s2[0][1]
+    xd,yd = s2[1][0],s2[1][1]
+    a = np.matrix(
+        [
+            [xb-xa,-(xd-xc)],
+            [yb-ya,-(yd-yc)]
+        ]
+    )
+    delta = np.linalg.det(a)
+    if np.fabs(delta) < 1e-6:
+        print(delta)
+        return None
+    c = np.matrix(
+        [
+            [xc-xa,-(xd-xc)],
+            [yc-ya,-(yd-yc)]
+        ]
+    )
+    d = np.matrix(
+        [
+                [xb-xa,xc-xa],
+                [yb-ya,yc-ya]
+        ]
+    )
+    lamb = np.linalg.det(c)/delta
+    miu = np.linalg.det(d)/delta
+    if lamb <= 1 and lamb >= 0 and miu >= 0 and miu <= 1:
+        x = xc + miu*(xd-xc)
+        y = yc + miu*(yd-yc)
+        return (x,y)
+    else:
+        return None
+get_crossing(((1,2),(3,4)),((1,4),(2,3)))
+
+
+# In[12]:
+
+
+#第七题
+#（代数：2*2线性方程式）设计一个名为LinearEquation的类，它是2*2的线性方程式：
+class LinearEquation(object):
+    def __init__(self,a,b,c,d,e,f):
+        self.__a = a
+        self.__b = b
+        self.__c = c
+        self.__d = d
+        self.__e = e
+        self.__f = f
+        self.x=0
+        self.y=0
+        self.z=0
+    def isSolvable(self):
+        z=self.__a*self.__d - self.__b * self.__c
+        if z !=0:
+            self.z=True
+        else:
+            self.z=False
+    def get(self):
+        self.x=(self.__e * self.__d - self.__b * self.__f) / (self.__a * self.__d - self.__b * self.__c)
+        self.y=(self.__a * self.__f - self.__e * self.__c) / (self.__a * self.__d - self.__b * self.__c)
+    def getX(self):
+        self.isSolvable()
+        if self.z == True:
+            self.get()
+            print(self.x)
+        else:
+            pass
+    def getY(self):
+        self.isSolvable()
+        if self.z == True:
+            self.get()
+            print(self.y)
+        else:
+            pass
+yy=LinearEquation(1,2,3,4,5,6)
+yy.getX()
+yy.getY()
+
